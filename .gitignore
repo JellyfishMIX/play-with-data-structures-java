@@ -1,5 +1,5 @@
-# Default ignored files
-/workspace.xml
+/src/com/test/Main.java
+/src/com.test/
 
 # Compiled class file
 *.class
