@@ -65,10 +65,14 @@ public class Array<E> { //泛型
         }
         E ret = data[index];
         for (int i = index; i < size; i++) {
-            data[i] = data[i + 1];
+            data[i] = data[i+1];
         }
         size--;
         data[size] = null;  // data[]中存放着一个个类对象的引用，data[size]还占用着一个引用，可以设为空，Java垃圾回收技术会释放掉占用的内存。非必须。该情况被称为loitering objects，注意： loitering objects != memory leak
+
+        if (size == data.length/4 && data.length/2 != 0) {
+            this.resize(data.length/2);
+        }
         return ret;
     }
 
@@ -79,7 +83,7 @@ public class Array<E> { //泛型
 
     // 删除数组末尾元素
     public void deleteLast() {
-        E ret = deleteByIndex(size - 1); //E ret 是作为接收deleteByIndex()的返回值，无实际作用
+        E ret = deleteByIndex(size-1); //E ret 是作为接收deleteByIndex()的返回值，无实际作用
     }
 
     // 删除指定的某个元素
