@@ -1,4 +1,4 @@
-package com.algorithm.linked_list;
+package com.algorithm.linkedList;
 
 public class Main {
     public static void main(String[] args) {
