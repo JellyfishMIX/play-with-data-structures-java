@@ -41,7 +41,7 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     @Override
-    // 检查栈顶元素
+    // 获取栈顶元素
     public E peek() {
         return array.getLast(); // 判断栈是否为空的逻辑在Array中
     }
