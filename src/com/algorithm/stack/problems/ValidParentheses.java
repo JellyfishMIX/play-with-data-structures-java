@@ -241,7 +241,7 @@ public class ValidParentheses {
         }
     }
 
-
+    // leetcode判题所需方法
     public boolean isValid(String s) {
         ArrayStack<Character> stack = new ArrayStack<>();
 
