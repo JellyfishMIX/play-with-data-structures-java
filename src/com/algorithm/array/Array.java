@@ -6,7 +6,7 @@ public class Array<E> { //泛型
 
     // 构造函数，传入数组的容量capacity构造Array
     public Array(int capacity) {
-        data = (E[]) new Object[capacity];
+        data = (E[]) new Object[capacity];  // java不支持new一个泛型类型的静态数组，需要中转一下。new一个Object类型的动态数组，然后强制转换成泛型类型
         size = 0;
     }
 
