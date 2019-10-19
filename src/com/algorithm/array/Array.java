@@ -36,8 +36,8 @@ public class Array<E> { //泛型
             throw new IllegalArgumentException("add failed. Require index>=0 && index<=size");
         }
 
-        // 若数组已满，则新建扩容数组，把原数组中数据逐个挪入新数组中，实现动态数组
-        if (size == data.length) {
+        // 若数组差1将满，则新建扩容数组，把原数组中数据逐个挪入新数组中，实现动态数组
+        if (size == data.length-1) {
             resize(2 * data.length);
         }
 
