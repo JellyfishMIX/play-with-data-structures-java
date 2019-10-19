@@ -77,8 +77,9 @@ public class Array<E> { //泛型
     }
 
     // 删除数组开头元素
-    public void deleteFirst() {
-        E ret = deleteByIndex(0); //E ret 是作为接收deleteByIndex()的返回值，无实际作用
+    public E deleteFirst() {
+        E ret = deleteByIndex(0); //E ret 是作为接收deleteByIndex()的返回值
+        return ret;
     }
 
     // 删除数组末尾元素
