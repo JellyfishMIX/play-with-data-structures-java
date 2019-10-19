@@ -82,8 +82,9 @@ public class Array<E> { //泛型
     }
 
     // 删除数组末尾元素
-    public void deleteLast() {
-        E ret = deleteByIndex(size-1); //E ret 是作为接收deleteByIndex()的返回值，无实际作用
+    public E deleteLast() {
+        E ret = deleteByIndex(size-1); //E ret 是作为接收deleteByIndex()的返回值
+        return ret;
     }
 
     // 删除指定的某个元素
@@ -100,6 +101,16 @@ public class Array<E> { //泛型
             throw new IllegalArgumentException("getArrayElem failed. Require index>=0 && index<=size");
         }
         return data[index];
+    }
+
+    // 获得第一个元素
+    public E getFirst() {
+        return get(0);
+    }
+
+    // 获得最后一个元素
+    public E getLast() {
+        return get(size-1);
     }
 
     // 设置index索引位置元素
