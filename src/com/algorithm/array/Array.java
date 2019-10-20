@@ -32,8 +32,11 @@ public class Array<E> { //泛型
 
     // 向指定位置添加新元素
     public void add(int index, E e) {
-        if (index < 0 || index > size) {
-            throw new IllegalArgumentException("add failed. Require index>=0 && index<=size");
+        if (index < 0) {
+            throw new IllegalArgumentException("getArrayElem failed. Require index>=0");
+        }
+        if (index > size) {
+            throw new IllegalArgumentException("getArrayElem failed. Require index<=size");
         }
 
         // 若数组差1将满，则新建扩容数组，把原数组中数据逐个挪入新数组中，实现动态数组
@@ -60,9 +63,13 @@ public class Array<E> { //泛型
 
     // 删除指定位置的元素，返回删除的元素
     public E deleteByIndex(int index) {
-        if (index < 0 || index > size) {
-            throw new IllegalArgumentException("add failed. Require index>=0 && index<=size");
+        if (index < 0) {
+            throw new IllegalArgumentException("getArrayElem failed. Require index>=0");
         }
+        if (index > size) {
+            throw new IllegalArgumentException("getArrayElem failed. Require index<=size");
+        }
+
         E ret = data[index];
         for (int i = index; i < size; i++) {
             data[i] = data[i+1];
@@ -98,9 +105,13 @@ public class Array<E> { //泛型
 
     // 获得index索引位置元素
     public E get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("getArrayElem failed. Require index>=0 && index<=size");
+        if (index < 0) {
+            throw new IllegalArgumentException("getArrayElem failed. Require index>=0");
         }
+        if (index >= size) {
+            throw new IllegalArgumentException("getArrayElem failed. Require index<size");
+        }
+
         return data[index];
     }
 
