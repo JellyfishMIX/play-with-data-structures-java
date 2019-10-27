@@ -44,7 +44,7 @@ public class InfixExpsToPostfixExps {
     public void testOutputInfixArray() {
         InfixExpsToPostfixExps infixExpsToPostfixExps = new InfixExpsToPostfixExps();
         // infixExpsToPostfixExps.inputStr("55+98*7");
-        infixExpsToPostfixExps.inputStr("55+2*(999*(3-1*6666+1))");
+        infixExpsToPostfixExps.inputStr("6789+2*(679*(3-1*345+1))");
         infixExpsToPostfixExps.outputInfixArray();
     }
 

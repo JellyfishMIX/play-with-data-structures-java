@@ -4,7 +4,7 @@ import com.algorithm.array.Array;
 import com.algorithm.stack.Stack;
 
 public class ArrayStack<E> implements Stack<E> {
-    Array<E> array; // 动态数组Array，capacity随意
+    Array<E> array; // 动态数组Array，capacity任意
 
     public ArrayStack() {
         array = new Array<>();
