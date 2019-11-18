@@ -1,11 +1,10 @@
 package com.algorithm.binarytree;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class TestNonRecursive {
     /**
-     * 递归遍历测试
+     * 非递归写法
      * @param args
      */
     public static void main(String[] args) {
@@ -27,7 +26,7 @@ public class Test {
 
         // 前序遍历
         List<BinaryTree<Integer>.Node> preOrderTraversalList;
-        preOrderTraversalList = integerBinaryTree.preOrder();
+        preOrderTraversalList = integerBinaryTree.preOrderNonRecursive();
         System.out.println("前序遍历的结果为：");
         for (int i=0; i< preOrderTraversalList.size(); i++) {
             System.out.print(preOrderTraversalList.get(i).data);
@@ -39,7 +38,7 @@ public class Test {
 
         // 中序遍历
         List<BinaryTree<Integer>.Node> inOrderTraversalList;
-        inOrderTraversalList = integerBinaryTree.inOrder();
+        inOrderTraversalList = integerBinaryTree.inOrderNonRecursive();
         System.out.println("中序遍历的结果为：");
         for (int i=0; i< inOrderTraversalList.size(); i++) {
             System.out.print(inOrderTraversalList.get(i).data);
@@ -51,7 +50,7 @@ public class Test {
 
         // 后序遍历
         List<BinaryTree<Integer>.Node> postOrderTraversalList;
-        postOrderTraversalList = integerBinaryTree.postOrder();
+        postOrderTraversalList = integerBinaryTree.postOrderNonRecursive();
         System.out.println("后序遍历的结果为：");
         for (int i=0; i< postOrderTraversalList.size(); i++) {
             System.out.print(postOrderTraversalList.get(i).data);

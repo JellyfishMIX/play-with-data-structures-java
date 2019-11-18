@@ -1,7 +1,9 @@
 package com.algorithm.binarytree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTree<E> {
     public class Node {
@@ -46,51 +48,108 @@ public class BinaryTree<E> {
         return newNode;
     }
 
+    // 递归写法
+
     // 前序遍历
     public List<Node> preOrder() {
-        return this.preOrderTraverse(this.root);
+        return this.preOrderTraversal(this.root);
     }
-    private List<Node> preOrderTraverse(Node myNode) {
+    private List<Node> preOrderTraversal(Node myNode) {
         List<Node> nodeList = new ArrayList<>();
         nodeList.add(myNode);
         if (myNode.leftNode != null) {
-            nodeList.addAll(this.preOrderTraverse(myNode.leftNode));
+            nodeList.addAll(this.preOrderTraversal(myNode.leftNode));
         }
         if (myNode.rightNode != null) {
-            nodeList.addAll((this.preOrderTraverse(myNode.rightNode)));
+            nodeList.addAll((this.preOrderTraversal(myNode.rightNode)));
         }
         return nodeList;
     }
 
     // 中序遍历
     public List<Node> inOrder() {
-        return this.inOrderTraverse(this.root);
+        return this.inOrderTraversal(this.root);
     }
-    private List<Node> inOrderTraverse(Node myNode) {
+    private List<Node> inOrderTraversal(Node myNode) {
         List<Node> nodeList = new ArrayList<>();
         if (myNode.leftNode != null) {
-            nodeList.addAll(this.inOrderTraverse(myNode.leftNode));
+            nodeList.addAll(this.inOrderTraversal(myNode.leftNode));
         }
         nodeList.add(myNode);
         if (myNode.rightNode != null) {
-            nodeList.addAll((this.inOrderTraverse(myNode.rightNode)));
+            nodeList.addAll((this.inOrderTraversal(myNode.rightNode)));
         }
         return nodeList;
     }
 
     // 后序遍历
     public List<Node> postOrder() {
-        return this.postOrderTraverse(this.root);
+        return this.postOrderTraversal(this.root);
     }
-    private List<Node> postOrderTraverse(Node myNode) {
+    private List<Node> postOrderTraversal(Node myNode) {
         List<Node> nodeList = new ArrayList<>();
         if (myNode.leftNode != null) {
-            nodeList.addAll(this.postOrderTraverse(myNode.leftNode));
+            nodeList.addAll(this.postOrderTraversal(myNode.leftNode));
         }
         if (myNode.rightNode != null) {
-            nodeList.addAll((this.postOrderTraverse(myNode.rightNode)));
+            nodeList.addAll((this.postOrderTraversal(myNode.rightNode)));
         }
         nodeList.add(myNode);
+        return nodeList;
+    }
+
+    // 非递归写法
+
+    // 前序遍历
+    public List<Node> preOrderNonRecursive() {
+        List<Node> nodeList = new ArrayList<>();
+        Stack<Node> nodeStack = new Stack<>();
+        Node myNode = this.root;
+        while (myNode != null || !nodeStack.isEmpty()) {
+            while (myNode != null) {
+                nodeList.add(myNode);
+                nodeStack.push(myNode);
+                myNode = myNode.leftNode;
+            }
+            myNode = nodeStack.pop();
+            myNode = myNode.rightNode;
+        }
+        return nodeList;
+    }
+
+    // 中序遍历
+    public List<Node> inOrderNonRecursive() {
+        List<Node> nodeList = new ArrayList<>();
+        Stack<Node> nodeStack = new Stack<>();
+        Node myNode = this.root;
+        while (myNode != null || !nodeStack.isEmpty()) {
+            while (myNode != null) {
+                nodeStack.push(myNode);
+                myNode = myNode.leftNode;
+            }
+            myNode = nodeStack.pop();
+            nodeList.add(myNode);
+            myNode = myNode.rightNode;
+        }
+        return nodeList;
+    }
+
+    // 后序遍历
+    // 采用类似先序遍历的办法。先遍历根结点再右孩子最后左孩子(先序遍历是先遍历根节点再左孩子最后右孩子)，最后把遍历得到的序列逆转，即得到了后序遍历。
+    public List<Node> postOrderNonRecursive() {
+        List<Node> nodeList = new ArrayList<>();
+        Stack<Node> nodeStack = new Stack<>();
+        Node myNode = this.root;
+        while (myNode != null || !nodeStack.isEmpty()) {
+            while (myNode != null) {
+                nodeList.add(myNode);
+                nodeStack.push(myNode);
+                myNode = myNode.rightNode;
+            }
+            myNode = nodeStack.pop();
+            myNode = myNode.leftNode;
+        }
+        Collections.reverse(nodeList);
         return nodeList;
     }
 }
