@@ -59,5 +59,17 @@ public class TestNonRecursive {
             }
         }
         System.out.println();
+
+        // 层次遍历法
+        List<BinaryTree<Integer>.Node> levelTraversalList;
+        levelTraversalList = integerBinaryTree.levelTraversal();
+        System.out.println("层次遍历的结果为：");
+        for (int i=0; i< levelTraversalList.size(); i++) {
+            System.out.print(levelTraversalList.get(i).data);
+            if (i != levelTraversalList.size()-1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
     }
 }

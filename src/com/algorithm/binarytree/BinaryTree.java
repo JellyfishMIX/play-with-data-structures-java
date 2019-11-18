@@ -1,9 +1,6 @@
 package com.algorithm.binarytree;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class BinaryTree<E> {
     public class Node {
@@ -150,6 +147,24 @@ public class BinaryTree<E> {
             myNode = myNode.leftNode;
         }
         Collections.reverse(nodeList);
+        return nodeList;
+    }
+
+    // 层次遍历
+    public List<Node> levelTraversal() {
+        List<Node> nodeList = new ArrayList<>();
+        Queue<Node> nodeQueue = new LinkedList<>();
+        nodeQueue.add(this.root);
+        while (!nodeQueue.isEmpty()) {
+            Node myNode = nodeQueue.poll();
+            nodeList.add(myNode);
+            if (myNode.leftNode != null) {
+                nodeQueue.add(myNode.leftNode);
+            }
+            if (myNode.rightNode != null) {
+                nodeQueue.add(myNode.rightNode);
+            }
+        }
         return nodeList;
     }
 }
