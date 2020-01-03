@@ -44,7 +44,11 @@ public class PrimMST {
                     middleNode = j;
                 }
             }
-            System.out.println(previousNode[middleNode] + "<-->" + middleNode + ", weight: " + minCost);
+            // 转换为ASCII码表示的英文字符输出
+            char previousNodeASCII = (char) (64 + previousNode[middleNode]);
+            char middleNodeASCII = (char) (64 + middleNode);
+            System.out.println(previousNodeASCII + "<-->" + middleNodeASCII + ", weight: " + minCost);
+            // System.out.println(previousNode[middleNode] + "<-->" + middleNode + ", weight: " + minCost);
             sum += minCost;
 
             // lowCost[middleNode] = 0; previousNode[middleNode] = 0;表示middleNode被选入最小生成树
