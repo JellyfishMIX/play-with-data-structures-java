@@ -32,18 +32,18 @@ public class LinkedList<E> {
         size = 0;
     }
 
-    //    获取链表中的元素个数
+    // 获取链表中的元素个数
     public int getSize() {
         return size;
     }
 
-    //    返回链表是否为空
+    // 返回链表是否为空
     public boolean isEmpty() {
         return size==0;
     }
 
-    //    在链表的index(0-based)位置添加新的元素e
-//    在链表中不是一个常用的操作，练习用
+    // 在链表的index(0-based)位置添加新的元素e
+    // 在链表中不是一个常用的操作，练习用
     public void add(int index, E e) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Illegal index.");
@@ -57,18 +57,18 @@ public class LinkedList<E> {
         size++;
     }
 
-    //    在链表头添加新元素
+    // 在链表头添加新元素
     public void addFirst(E e) {
         add(0, e);
     }
 
-    //    在链表末尾添加新的元素e
+    // 在链表末尾添加新的元素e
     public void addLast(E e) {
         add(size, e);
     }
 
-    //    获得链表的第index(0-based)个位置的元素
-//    在链表中不是一个常用的操作，练习用
+    // 获得链表的第index(0-based)个位置的元素
+    // 在链表中不是一个常用的操作，练习用
     public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Illegal index.");
@@ -81,18 +81,18 @@ public class LinkedList<E> {
         return cur.e;
     }
 
-    //    获得链表的第一个元素
+    // 获得链表的第一个元素
     public E getFirst() {
         return get(0);
     }
 
-    //    获得链表的最后一个元素
+    // 获得链表的最后一个元素
     public E getLast() {
         return get(size-1);
     }
 
-    //    修改链表的第index(0-based)个位置的元素
-//    在链表中不是一个常用的操作，练习用
+    // 修改链表的第index(0-based)个位置的元素
+    // 在链表中不是一个常用的操作，练习用
     public void set(int index, E e) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Illegal index.");
@@ -104,7 +104,7 @@ public class LinkedList<E> {
         cur.e = e;
     }
 
-    //    查找链表中是否存在元素e
+    // 查找链表中是否存在元素e
     public boolean isContain(E e) {
         Node cur = dummyHead.next;
         for (int i=0; i<size; i++) {
@@ -116,8 +116,8 @@ public class LinkedList<E> {
         return false;
     }
 
-    //    删除链表的第index(0-based)个位置的元素
-//    在链表中不是一个常用的操作，练习用
+    // 删除链表的第index(0-based)个位置的元素
+    // 在链表中不是一个常用的操作，练习用
     public E delete(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Delete failed. Index is illegal.");
@@ -134,11 +134,11 @@ public class LinkedList<E> {
         return delNode.e;
     }
 
-    //    删除链表中第一个元素
+    // 删除链表中第一个元素
     public E deleteFirst() {
         return delete(0);
     }
-    //    删除链表中最后一个元素
+    // 删除链表中最后一个元素
     public E deleteLast() {
         return delete(size-1);
     }
