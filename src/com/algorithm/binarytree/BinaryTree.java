@@ -150,7 +150,7 @@ public class BinaryTree<E> {
         return nodeList;
     }
 
-    // 层次遍历
+    // 层次遍历（广度优先搜索遍历）
     public List<Node> levelTraversal() {
         List<Node> nodeList = new ArrayList<>();
         Queue<Node> nodeQueue = new LinkedList<>();
