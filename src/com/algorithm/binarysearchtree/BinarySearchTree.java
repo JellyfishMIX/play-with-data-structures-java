@@ -56,4 +56,90 @@ public class BinarySearchTree<E extends Comparable<E>>{
 
         return node;
     }
+
+    /**
+     * 查看二分搜索树中是否包含元素e
+     * @param e element
+     * @return
+     */
+    public boolean contains(E e) {
+        return contains(root, e);
+    }
+
+    /**
+     * 查看以node为根的二分搜索树中是否包含元素e，递归
+     * @param node node
+     * @param e element
+     * @return
+     */
+    private boolean contains(Node node, E e) {
+        if (node == null) {
+            return false;
+        }
+
+        if (e.compareTo(node.e) == 0) {
+            return true;
+        } else if (e.compareTo(node.e) < 0) {
+            return this.contains(node.left, e);
+        } else {
+            return this.contains(node.right, e);
+        }
+    }
+
+    /**
+     * 二分搜索树的前序遍历
+     */
+    public void preOrder() {
+        preOrder(root);
+    }
+
+    /**
+     * 前序遍历以node为根的二分搜索树，递归
+     * @param node node
+     */
+    private void preOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        System.out.println(node.e);
+        this.preOrder(node.left);
+        this.preOrder(node.right);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        this.generateBinarySearchTree(root, 0, res);
+        return res.toString();
+    }
+
+    /**
+     * 生成以node为根节点，深度为depth的描述二叉树的字符串
+     * @param node node
+     * @param depth 深度
+     * @param res 一个StringBuilder
+     */
+    private void generateBinarySearchTree(Node node, int depth, StringBuilder res) {
+        if (node == null) {
+            res.append(describeDepth(depth) + "null\n");
+            return;
+        }
+
+        res.append(describeDepth(depth) + node.e + '\n');
+        this.generateBinarySearchTree(node.left, depth + 1, res);
+        this.generateBinarySearchTree(node.right, depth + 1, res);
+    }
+
+    /**
+     * 描述深度
+     * @param depth 二叉搜索树的深度
+     */
+    private String describeDepth(int depth) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < depth; i++) {
+            res.append("-");
+        }
+        return res.toString();
+    }
 }
