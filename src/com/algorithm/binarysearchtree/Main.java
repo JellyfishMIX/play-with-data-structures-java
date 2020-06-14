@@ -11,7 +11,8 @@ public class Main {
         for (int num : nums) {
             binarySearchTree.add(num);
         }
-        // binarySearchTree.preOrder();
+        binarySearchTree.preOrder();
+        System.out.println();
         System.out.println(binarySearchTree);
     }
 }

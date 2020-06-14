@@ -115,6 +115,48 @@ public class BinarySearchTree<E extends Comparable<E>>{
     }
 
     /**
+     * 二分搜索树的中序遍历
+     */
+    private void inOrder() {
+        inOrder(root);
+    }
+
+    /**
+     * 中序遍历以node为根的二分搜索树，递归
+     * @param node node
+     */
+    private void inOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        this.inOrder(node.left);
+        System.out.println(node.e);
+        this.inOrder(node.right);
+    }
+
+    /**
+     * 二分搜索树的后序遍历
+     */
+    private void postOrder() {
+        postOrder(root);
+    }
+
+    /**
+     * 后序遍历以node为根的二分搜索树，递归
+     * @param node node
+     */
+    private void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        this.postOrder(node.left);
+        this.postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    /**
      * 生成以node为根节点，深度为depth的描述二叉树的字符串
      * @param node node
      * @param depth 深度
