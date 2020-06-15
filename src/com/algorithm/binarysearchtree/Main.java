@@ -11,8 +11,41 @@ public class Main {
         for (int num : nums) {
             binarySearchTree.add(num);
         }
+
+        // 描述二叉树
+
+        System.out.println("Binary Search Tree Description(preOrder): ");
+        System.out.println(binarySearchTree);
+        System.out.println();
+
+        // 前序遍历
+
+        System.out.println("preOrder(recursive): ");
         binarySearchTree.preOrder();
         System.out.println();
-        System.out.println(binarySearchTree);
+
+        System.out.println("preOrder(non-recursive): ");
+        binarySearchTree.preOrderNR();
+        System.out.println();
+
+        // 中序遍历
+
+        System.out.println("inOrder(recursive): ");
+        binarySearchTree.inOrder();
+        System.out.println();
+
+        System.out.println("inOrder(non-recursive): ");
+        binarySearchTree.inOrderNR();
+        System.out.println();
+
+        // 后续遍历
+
+        System.out.println("postOrder(recursive): ");
+        binarySearchTree.postOrder();
+        System.out.println();
+
+        System.out.println("postOrder(non-recursive): ");
+        binarySearchTree.postOrderNR();
+        System.out.println();
     }
 }

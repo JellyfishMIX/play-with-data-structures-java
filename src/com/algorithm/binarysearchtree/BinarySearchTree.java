@@ -1,5 +1,10 @@
 package com.algorithm.binarysearchtree;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
+
 public class BinarySearchTree<E extends Comparable<E>>{
     private class Node {
         public E e;
@@ -86,26 +91,7 @@ public class BinarySearchTree<E extends Comparable<E>>{
         }
     }
 
-    /**
-     * 二分搜索树的前序遍历
-     */
-    public void preOrder() {
-        preOrder(root);
-    }
-
-    /**
-     * 前序遍历以node为根的二分搜索树，递归
-     * @param node node
-     */
-    private void preOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-
-        System.out.println(node.e);
-        this.preOrder(node.left);
-        this.preOrder(node.right);
-    }
+    // 描述二叉树
 
     @Override
     public String toString() {
@@ -114,47 +100,6 @@ public class BinarySearchTree<E extends Comparable<E>>{
         return res.toString();
     }
 
-    /**
-     * 二分搜索树的中序遍历
-     */
-    private void inOrder() {
-        inOrder(root);
-    }
-
-    /**
-     * 中序遍历以node为根的二分搜索树，递归
-     * @param node node
-     */
-    private void inOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-
-        this.inOrder(node.left);
-        System.out.println(node.e);
-        this.inOrder(node.right);
-    }
-
-    /**
-     * 二分搜索树的后序遍历
-     */
-    private void postOrder() {
-        postOrder(root);
-    }
-
-    /**
-     * 后序遍历以node为根的二分搜索树，递归
-     * @param node node
-     */
-    private void postOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-
-        this.postOrder(node.left);
-        this.postOrder(node.right);
-        System.out.println(node.e);
-    }
 
     /**
      * 生成以node为根节点，深度为depth的描述二叉树的字符串
@@ -183,5 +128,137 @@ public class BinarySearchTree<E extends Comparable<E>>{
             res.append("-");
         }
         return res.toString();
+    }
+
+    // 递归
+
+    /**
+     * 二分搜索树的前序遍历
+     */
+    public void preOrder() {
+        preOrder(root);
+    }
+
+    /**
+     * 前序遍历以node为根的二分搜索树，递归
+     * @param node node
+     */
+    private void preOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        System.out.println(node.e);
+        this.preOrder(node.left);
+        this.preOrder(node.right);
+    }
+
+    /**
+     * 二分搜索树的中序遍历
+     */
+    public void inOrder() {
+        inOrder(root);
+    }
+
+    /**
+     * 中序遍历以node为根的二分搜索树，递归
+     * @param node node
+     */
+    private void inOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        this.inOrder(node.left);
+        System.out.println(node.e);
+        this.inOrder(node.right);
+    }
+
+    /**
+     * 二分搜索树的后序遍历
+     */
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    /**
+     * 后序遍历以node为根的二分搜索树，递归
+     * @param node node
+     */
+    private void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        this.postOrder(node.left);
+        this.postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    // 非递归
+
+    /**
+     * 二分搜索树的前序遍历，非递归
+     */
+    public void preOrderNR() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node popNode = stack.pop();
+            System.out.println(popNode.e);
+            if (popNode.right != null) {
+                stack.push(popNode.right);
+            }
+            if (popNode.left != null) {
+                stack.push(popNode.left);
+            }
+        }
+    }
+
+    /**
+     * 二分搜索树的中序遍历，非递归
+     */
+    public void inOrderNR() {
+        Stack<Node> stack = new Stack<>();
+        List<Node> nodeList = new ArrayList<>();
+        Node popNode = this.root;
+        while (popNode != null || !stack.isEmpty()) {
+            while (popNode != null) {
+                stack.push(popNode);
+                popNode = popNode.left;
+            }
+            popNode = stack.pop();
+            nodeList.add(popNode);
+            popNode = popNode.right;
+        }
+
+        for (Node node : nodeList) {
+            System.out.println(node.e);
+        }
+    }
+
+    /**
+     * 二分搜索树的后序遍历，非递归
+     * 采用类似先序遍历的办法。先遍历根结点再右孩子最后左孩子(先序遍历是先遍历根节点再左孩子最后右孩子)，最后把遍历得到的序列逆转，即得到了后序遍历。
+     */
+    public void postOrderNR() {
+        List<Node> nodeList = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node popNode = stack.pop();
+            nodeList.add(popNode);
+            if (popNode.left != null) {
+                stack.push(popNode.left);
+            }
+            if (popNode.right != null) {
+                stack.push(popNode.right);
+            }
+        }
+
+        Collections.reverse(nodeList);
+        for (Node node : nodeList) {
+            System.out.println(node.e);
+        }
     }
 }
