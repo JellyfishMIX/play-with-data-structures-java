@@ -47,5 +47,10 @@ public class Main {
         System.out.println("postOrder(non-recursive): ");
         binarySearchTree.postOrderNR();
         System.out.println();
+
+        // 层次遍历（BFS）
+        System.out.println("BFS: ");
+        binarySearchTree.levelOrder();
+        System.out.println();
     }
 }

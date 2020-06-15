@@ -1,9 +1,6 @@
 package com.algorithm.binarysearchtree;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class BinarySearchTree<E extends Comparable<E>>{
     private class Node {
@@ -257,6 +254,28 @@ public class BinarySearchTree<E extends Comparable<E>>{
         }
 
         Collections.reverse(nodeList);
+        for (Node node : nodeList) {
+            System.out.println(node.e);
+        }
+    }
+
+    // 层次优先遍历（BFS）
+
+    public void levelOrder() {
+        List<Node> nodeList = new ArrayList<>();
+        Queue<Node> nodeQueue = new LinkedList<>();
+        nodeQueue.add(this.root);
+        while (!nodeQueue.isEmpty()) {
+            Node pollNode = nodeQueue.poll();
+            nodeList.add(pollNode);
+            if (pollNode.left != null) {
+                nodeQueue.add(pollNode.left);
+            }
+            if (pollNode.right != null) {
+                nodeQueue.add(pollNode.right);
+            }
+        }
+
         for (Node node : nodeList) {
             System.out.println(node.e);
         }
