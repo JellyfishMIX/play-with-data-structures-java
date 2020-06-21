@@ -88,45 +88,6 @@ public class BinarySearchTree<E extends Comparable<E>>{
         }
     }
 
-    // 描述二叉树
-
-    @Override
-    public String toString() {
-        StringBuilder res = new StringBuilder();
-        this.generateBinarySearchTree(root, 0, res);
-        return res.toString();
-    }
-
-
-    /**
-     * 生成以node为根节点，深度为depth的描述二叉树的字符串
-     * @param node node
-     * @param depth 深度
-     * @param res 一个StringBuilder
-     */
-    private void generateBinarySearchTree(Node node, int depth, StringBuilder res) {
-        if (node == null) {
-            res.append(describeDepth(depth) + "null\n");
-            return;
-        }
-
-        res.append(describeDepth(depth) + node.e + '\n');
-        this.generateBinarySearchTree(node.left, depth + 1, res);
-        this.generateBinarySearchTree(node.right, depth + 1, res);
-    }
-
-    /**
-     * 描述深度
-     * @param depth 二叉搜索树的深度
-     */
-    private String describeDepth(int depth) {
-        StringBuilder res = new StringBuilder();
-        for (int i = 0; i < depth; i++) {
-            res.append("-");
-        }
-        return res.toString();
-    }
-
     // 递归
 
     /**
@@ -279,5 +240,147 @@ public class BinarySearchTree<E extends Comparable<E>>{
         for (Node node : nodeList) {
             System.out.println(node.e);
         }
+    }
+
+    // 寻找二分搜索树的最小元素
+    public E minimum() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("BinarySearchTree is empty!");
+        }
+
+        return this.minimum(this.root).e;
+    }
+
+    // 返回以node为根的二分搜索树的最小值所在节点
+    private Node minimum(Node node) {
+        if (node.left == null) {
+            return node;
+        } else {
+            return this.minimum(node.left);
+        }
+    }
+
+    // 寻找二分搜索树的最小元素，非递归
+    public E minimumNR() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("BinarySearchTree is empty!");
+        }
+
+        Node currentNode = this.root;
+        while (currentNode.left != null) {
+            currentNode = currentNode.left;
+        }
+        return currentNode.e;
+    }
+
+    // 寻找二分搜索树的最大元素
+    public E maximum() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("BinarySearchTree is empty!");
+        }
+
+        return this.maximum(this.root).e;
+    }
+
+    // 返回以node为根的二分搜索树的最大值所在节点
+    private Node maximum(Node node) {
+        if (node.right == null) {
+            return node;
+        } else {
+            return this.maximum(node.right);
+        }
+    }
+
+    // 寻找二分搜索树的最大元素，非递归
+    public E maximumNR() {
+        if (this.size == 0) {
+            throw new IllegalArgumentException("BinarySearchTree is empty!");
+        }
+
+        Node currentNode = this.root;
+        while (currentNode.right != null) {
+            currentNode = currentNode.right;
+        }
+        return currentNode.e;
+    }
+
+    // 从二分搜索树中删除最小值所在节点，返回最小值
+    public E removeMin() {
+        E minimum = this.minimum();
+        this.removeMin(root);
+        return minimum;
+    }
+
+    // 删除以node为根的二分搜索树中的最小节点
+    // 返回删除节点后新的二分搜索树的根
+    public Node removeMin(Node node) {
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            this.size--;
+            return rightNode;
+        }
+
+        node.left = this.removeMin(node.left);
+        return node;
+    }
+
+    // 从二分搜索树中删除最大值所在节点，返回最大值
+    public E removeMax() {
+        E maximum = this.maximum();
+        this.removeMax(root);
+        return maximum;
+    }
+
+    // 删除以node为根的二分搜索树中的最大节点
+    // 返回删除节点后新的二分搜索树的根
+    public Node removeMax(Node node) {
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            this.size--;
+            return leftNode;
+        }
+
+        node.right = this.removeMax(node.right);
+        return node;
+    }
+
+    // 描述二叉树
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        this.generateBinarySearchTree(root, 0, res);
+        return res.toString();
+    }
+
+    /**
+     * 生成以node为根节点，深度为depth的描述二叉树的字符串
+     * @param node node
+     * @param depth 深度
+     * @param res 一个StringBuilder
+     */
+    private void generateBinarySearchTree(Node node, int depth, StringBuilder res) {
+        if (node == null) {
+            res.append(describeDepth(depth) + "null\n");
+            return;
+        }
+
+        res.append(describeDepth(depth) + node.e + '\n');
+        this.generateBinarySearchTree(node.left, depth + 1, res);
+        this.generateBinarySearchTree(node.right, depth + 1, res);
+    }
+
+    /**
+     * 描述深度
+     * @param depth 二叉搜索树的深度
+     */
+    private String describeDepth(int depth) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < depth; i++) {
+            res.append("-");
+        }
+        return res.toString();
     }
 }
