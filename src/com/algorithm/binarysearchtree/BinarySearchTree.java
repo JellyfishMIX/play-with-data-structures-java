@@ -313,7 +313,7 @@ public class BinarySearchTree<E extends Comparable<E>>{
 
     // 删除以node为根的二分搜索树中的最小节点
     // 返回删除节点后新的二分搜索树的根
-    public Node removeMin(Node node) {
+    private Node removeMin(Node node) {
         if (node.left == null) {
             Node rightNode = node.right;
             node.right = null;
@@ -334,7 +334,7 @@ public class BinarySearchTree<E extends Comparable<E>>{
 
     // 删除以node为根的二分搜索树中的最大节点
     // 返回删除节点后新的二分搜索树的根
-    public Node removeMax(Node node) {
+    private Node removeMax(Node node) {
         if (node.right == null) {
             Node leftNode = node.left;
             node.left = null;
