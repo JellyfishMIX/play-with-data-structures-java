@@ -3,7 +3,7 @@ package com.algorithm.binarytree;
 import java.util.*;
 
 public class BinaryTree<E> {
-    public class Node {
+    class Node {
         public E data;
         public Node leftNode, rightNode;
 

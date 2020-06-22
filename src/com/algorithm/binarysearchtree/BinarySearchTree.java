@@ -346,6 +346,45 @@ public class BinarySearchTree<E extends Comparable<E>>{
         return node;
     }
 
+    // 从二分搜索树中删除元素为e的节点
+    public void remove(E e) {
+        remove(this.root, e);
+    }
+
+    // 删除以node为根的二分搜素树中值为e的节点，递归算法
+    // 返回删除节点后新的二分搜索树的根
+    private Node remove(Node node, E e) {
+        if (node == null) {
+            return null;
+        }
+
+        if (e.compareTo(node.e) < 0) {
+            node.left = this.remove(node.left, e);
+            return node;
+        } else if (e.compareTo(node.e) > 0) {
+            node.right = this.remove(node.right, e);
+            return node;
+        } else {
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                this.size--;
+                return rightNode;
+            } else if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                this.size--;
+                return leftNode;
+            } else {
+                Node successor = this.minimum(node.right);
+                successor.right = this.removeMin(node.right);
+                successor.left = node.left;
+                node.left = node.right = null;
+                return successor;
+            }
+        }
+    }
+
     // 描述二叉树
 
     @Override
