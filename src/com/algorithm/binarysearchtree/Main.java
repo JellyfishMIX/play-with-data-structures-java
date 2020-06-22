@@ -94,6 +94,16 @@ public class Main {
             }
         }
 
+        // 返回二叉搜索树中e的floor，需要在JVM options中加-ea开启断言
+        assert binarySearchTree.floor(7) == 6;
+        assert binarySearchTree.floor(18) == 8;
+        assert binarySearchTree.floor(1) == null;
+
+        // 返回二叉搜索树中e的ceil，需要在JVM options中加-ea开启断言
+        assert binarySearchTree.ceil(1) == 2;
+        assert binarySearchTree.ceil(18) == null;
+        assert binarySearchTree.ceil(7) == 8;
+
         // 删除元素3
         binarySearchTree.remove(3);
 
