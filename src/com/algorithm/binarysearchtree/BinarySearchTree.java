@@ -2,6 +2,11 @@ package com.algorithm.binarysearchtree;
 
 import java.util.*;
 
+/**
+ * 不包含重复元素的二叉搜索树
+ *
+ * @param <E>
+ */
 public class BinarySearchTree<E extends Comparable<E>> {
     private class Node {
         public E e;
