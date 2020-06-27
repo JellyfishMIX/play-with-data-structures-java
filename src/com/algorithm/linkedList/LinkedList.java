@@ -105,7 +105,7 @@ public class LinkedList<E> {
     }
 
     // 查找链表中是否存在元素e
-    public boolean isContain(E e) {
+    public boolean contains(E e) {
         Node cur = dummyHead.next;
         for (int i=0; i<size; i++) {
             if (cur.e.equals(e)) {
@@ -116,9 +116,19 @@ public class LinkedList<E> {
         return false;
     }
 
+    public void removeElement(E e) {
+        Node prev = dummyHead;
+        for (int i = 0; i < this.size; i++) {
+            if (prev.next.e.equals(e)) {
+                prev.next = prev.next.next;
+            }
+            prev = prev.next;
+        }
+    }
+
     // 删除链表的第index(0-based)个位置的元素
     // 在链表中不是一个常用的操作，练习用
-    public E delete(int index) {
+    public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Delete failed. Index is illegal.");
         }
@@ -135,12 +145,12 @@ public class LinkedList<E> {
     }
 
     // 删除链表中第一个元素
-    public E deleteFirst() {
-        return delete(0);
+    public E removeFirst() {
+        return remove(0);
     }
     // 删除链表中最后一个元素
-    public E deleteLast() {
-        return delete(size-1);
+    public E removeLast() {
+        return remove(size-1);
     }
 
     @Override
