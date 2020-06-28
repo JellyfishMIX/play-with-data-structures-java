@@ -459,6 +459,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     /**
      * 返回e的floor
+     * @deprecated 疑似存在问题
      *
      * @param e element
      * @return
@@ -473,6 +474,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     /**
      * floor递归返回Node
+     * @deprecated 疑似存在问题
      *
      * @param node node
      * @param e    element
@@ -506,6 +508,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     /**
      * 返回e的ceil
+     * @deprecated 疑似存在问题
      *
      * @param e element
      * @return
@@ -520,6 +523,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     /**
      * ceil递归返回Node
+     * @deprecated 疑似存在问题
      *
      * @param e    element
      * @param node node

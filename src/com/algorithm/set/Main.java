@@ -10,56 +10,50 @@ public class Main {
     public static void main(String[] args) {
         // binarySearchTreeSet
         System.out.println();
-        System.out.println("binarySearchTreeSet");
+        System.out.println("BinarySearchTreeSet");
         System.out.println();
 
         Set<String> BstSet1 = new BstSet<>();
-        ArrayList<String> BstWords1 = new ArrayList<>();
-        FileOperation.readFile("src/com/algorithm/set/a-tale-of-two-cities.txt", BstWords1);
-        System.out.println("A tale of two cities");
-        System.out.println("Total words: " + BstWords1.size());
-        for (String word : BstWords1) {
-            BstSet1.add(word);
-        }
-        System.out.println("Total different words: " + BstSet1.getSize());
+        Main.testSet(BstSet1, "a-tale-of-two-cities.txt");
 
         System.out.println();
 
         Set<String> BstSet2 = new BstSet<>();
-        ArrayList<String> BstWords2 = new ArrayList<>();
-        FileOperation.readFile("src/com/algorithm/set/pride-and-prejudice.txt", BstWords2);
-        System.out.println("Pride and prejudice");
-        System.out.println("Total words: " + BstWords2.size());
-        for (String word : BstWords2) {
-            BstSet2.add(word);
-        }
-        System.out.println("Total different words: " + BstSet2.getSize());
+        Main.testSet(BstSet2, "pride-and-prejudice.txt");
 
         // linkedListSet
         System.out.println();
-        System.out.println("binarySearchTreeSet");
+        System.out.println("LinkedListSet");
         System.out.println();
 
-        Set<String> LinkedListSet1 = new LinkedListSet<>();
-        ArrayList<String> LinkedListWords1 = new ArrayList<>();
-        FileOperation.readFile("src/com/algorithm/set/a-tale-of-two-cities.txt", LinkedListWords1);
-        System.out.println("A tale of two cities");
-        System.out.println("Total words: " + LinkedListWords1.size());
-        for (String word : LinkedListWords1) {
-            LinkedListSet1.add(word);
-        }
-        System.out.println("Total different words: " + LinkedListSet1.getSize());
+        Set<String> linkedListSet1 = new LinkedListSet<>();
+        Main.testSet(linkedListSet1, "a-tale-of-two-cities.txt");
 
         System.out.println();
 
-        Set<String> LinkedListSet2 = new LinkedListSet<>();
-        ArrayList<String> LinkedListWords2 = new ArrayList<>();
-        FileOperation.readFile("src/com/algorithm/set/pride-and-prejudice.txt", LinkedListWords2);
-        System.out.println("Pride and prejudice");
-        System.out.println("Total words: " + LinkedListWords2.size());
-        for (String word : LinkedListWords2) {
-            LinkedListSet2.add(word);
+        Set<String> linkedListSet2 = new LinkedListSet<>();
+        Main.testSet(linkedListSet2, "pride-and-prejudice.txt");
+    }
+
+    /**
+     * 测试性能
+     *
+     * @param set set
+     * @param filename filename
+     */
+    private static void testSet(Set<String> set, String filename) {
+        long startTime = System.nanoTime();
+
+        ArrayList<String> words = new ArrayList<>();
+        FileOperation.readFile("src/com/algorithm/set/" + filename, words);
+        System.out.println(filename);
+        System.out.println("Total words: " + words.size());
+        for (String word : words) {
+            set.add(word);
         }
-        System.out.println("Total different words: " + LinkedListSet2.getSize());
+        System.out.println("Total different words: " + set.getSize());
+
+        long endTime = System.nanoTime();
+        System.out.println(String.format("Consumed time: %f %s", (endTime - startTime) / 1000000000.0, "s"));
     }
 }

@@ -116,11 +116,17 @@ public class LinkedList<E> {
         return false;
     }
 
+    /**
+     * 删除linkedList中所有的e元素
+     *
+     * @param e element
+     */
     public void removeElement(E e) {
         Node prev = dummyHead;
         for (int i = 0; i < this.size; i++) {
             if (prev.next.e.equals(e)) {
                 prev.next = prev.next.next;
+                this.size--;
             }
             prev = prev.next;
         }
