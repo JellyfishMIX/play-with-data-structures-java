@@ -5,6 +5,12 @@ package com.algorithm.map;
  * @date 2020/6/30 20:06
  */
 public interface Map<K, V> {
+    /**
+     * 添加元素
+     *
+     * @param key key
+     * @param value value
+     */
     void add(K key, V value);
 
     /**

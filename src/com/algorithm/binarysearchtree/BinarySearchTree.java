@@ -449,8 +449,8 @@ public class BinarySearchTree<E extends Comparable<E>> {
                 return leftNode;
             } else {
                 Node successor = this.minimum(node.right);
-                successor.right = this.removeMin(node.right);
                 successor.left = node.left;
+                successor.right = this.removeMin(node.right);
                 node.left = node.right = null;
                 return successor;
             }
