@@ -37,7 +37,7 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     // 出栈
     public E pop() {
-        return array.deleteLast();
+        return array.removeLast();
     }
 
     @Override

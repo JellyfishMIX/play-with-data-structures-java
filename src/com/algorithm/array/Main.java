@@ -9,7 +9,7 @@ public class Main {
         System.out.println("原数组为：");
         System.out.println(arr);
 
-        arr.delete(2);
+        arr.remove(2);
         System.out.println("删除后的数组为：\n" + arr);
     }
 }

@@ -33,7 +33,7 @@ public class ArrayQueue<E> implements Queue<E> {
     @Override
     // 出队
     public E dequeue() {
-        return array.deleteFirst();
+        return array.removeFirst();
     }
 
     @Override

@@ -31,7 +31,7 @@ public class InfixExpsToPostfixExps {
         }
         // 输入是操作符后，操作符本身占了一个infixArray元素，此外infixArray中必定还会多加一个元素。防止因为最后一次输入是操作符，导致infixArray中最后一个元素为空
         if (isContinuousOperator == true) {
-            infixArray.deleteLast();
+            infixArray.removeLast();
         }
     }
 

@@ -95,7 +95,7 @@ public class Array<E> {
      * @param index 指定位置的索引
      * @return
      */
-    public E deleteByIndex(int index) {
+    public E removeByIndex(int index) {
         if (index < 0) {
             throw new IllegalArgumentException("getArrayElem failed. Require index>=0");
         }
@@ -121,9 +121,9 @@ public class Array<E> {
      * 删除数组开头元素
      * @return
      */
-    public E deleteFirst() {
-        // E ret 是作为接收deleteByIndex()的返回值
-        E ret = deleteByIndex(0);
+    public E removeFirst() {
+        // E ret 是作为接收removeByIndex()的返回值
+        E ret = removeByIndex(0);
         return ret;
     }
 
@@ -131,9 +131,9 @@ public class Array<E> {
      * 删除数组末尾元素
      * @return
      */
-    public E deleteLast() {
-        // E ret 是作为接收deleteByIndex()的返回值
-        E ret = deleteByIndex(size-1);
+    public E removeLast() {
+        // E ret 是作为接收removeByIndex()的返回值
+        E ret = removeByIndex(size-1);
         return ret;
     }
 
@@ -142,10 +142,11 @@ public class Array<E> {
      *
      * @param e 元素e
      */
-    public void delete(E e) {
+    public void remove(E e) {
         int index = find(e);
         if (index != -1) {
-            E ret = deleteByIndex(index); // E ret 是作为接收deleteByIndex()的返回值，无实际作用
+            // E ret 是作为接收removeByIndex()的返回值，无实际作用
+            E ret = removeByIndex(index);
         }
     }
 

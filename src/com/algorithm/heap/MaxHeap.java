@@ -1,5 +1,7 @@
 package com.algorithm.heap;
 
+import com.algorithm.array.Array;
+
 /**
  * 一棵使用动态数组表示的最大堆，动态数组索引从0开始
  *
@@ -79,12 +81,65 @@ public class MaxHeap<E extends Comparable<E>> {
         siftUp(data.getSize() - 1);
     }
 
+    /**
+     * 上浮操作。子结点循环地和父结点进行比较以保持最大二叉堆的性质。
+     *
+     * @param k 指定的索引
+     */
     public void siftUp(int k) {
         // 和父结点做比较
-        int parentIndex = this.parent(k);
+        int parentIndex = parent(k);
         while (k > 0 && data.get(parentIndex).compareTo(data.get(k)) < 0) {
             data.swap(k, parentIndex);
             k = parentIndex;
+        }
+    }
+
+    /**
+     * 查找堆中的最大元素
+     * @return
+     */
+    public E findMax() {
+        if (data.getSize() == 0) {
+            throw new IllegalArgumentException("Can not findMax when heap is empty.");
+        }
+        return data.get(0);
+    }
+
+    /**
+     * 取出堆中最大的元素
+     * @return
+     */
+    public E extractMax() {
+        E res = findMax();
+        data.swap(0, data.getSize() - 1);
+        data.removeLast();
+        siftDown(0);
+        return res;
+    }
+
+    /**
+     * 下沉操作。父结点依次和左右孩子比较，与左右孩子中最大的那个进行替换。
+     *
+     * @param k 指定的索引（从哪个结点开始进行siftDown操作）
+     */
+    public void siftDown(int k) {
+        // 如果数组越界，说明k没有左孩子，是叶子结点
+        while (leftChild(k) < data.getSize()) {
+            int leftIndex = leftChild(k);
+            int rightIndex = leftIndex + 1;
+            // maxChild是左右孩子中最大的那个
+            int maxChild = leftIndex;
+            if (rightIndex < data.getSize() && data.get(rightIndex).compareTo(data.get(leftIndex)) > 0) {
+                maxChild = rightIndex;
+            }
+            // 判断父结点是否比孩子结点中最大的那个大
+            if (data.get(k).compareTo(data.get(maxChild)) > 0) {
+                break;
+            }
+            // 如果父结点是否比孩子结点中最大的那个孩子小
+            data.swap(k, maxChild);
+            k = maxChild;
         }
     }
 }
