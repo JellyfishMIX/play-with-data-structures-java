@@ -42,6 +42,7 @@ public class Main {
      * @param filename filename
      */
     private static void testSet(Set<String> set, String filename) {
+        // 开始时间
         long startTime = System.nanoTime();
 
         ArrayList<String> words = new ArrayList<>();
@@ -54,6 +55,6 @@ public class Main {
         System.out.println("Total different words: " + set.getSize());
 
         long endTime = System.nanoTime();
-        System.out.println(String.format("Consumed time: %f %s", (endTime - startTime) / 1000000000.0, "s"));
+        System.out.println(String.format("Consumed time: %f s", (endTime - startTime) / 1000000000.0));
     }
 }
