@@ -76,7 +76,7 @@ public class MaxHeap<E extends Comparable<E>> {
      *
      * @param e 元素
      */
-    private void add(E e) {
+    public void add(E e) {
         data.addLast(e);
         siftUp(data.getSize() - 1);
     }
@@ -87,9 +87,12 @@ public class MaxHeap<E extends Comparable<E>> {
      * @param k 指定的索引
      */
     public void siftUp(int k) {
+        if (k <= 0) {
+            return;
+        }
         // 和父结点做比较
-        int parentIndex = parent(k);
-        while (k > 0 && data.get(parentIndex).compareTo(data.get(k)) < 0) {
+        while (k > 0 && data.get(parent(k)).compareTo(data.get(k)) < 0) {
+            int parentIndex = parent(k);
             data.swap(k, parentIndex);
             k = parentIndex;
         }
@@ -134,7 +137,7 @@ public class MaxHeap<E extends Comparable<E>> {
                 maxChild = rightIndex;
             }
             // 判断父结点是否比孩子结点中最大的那个大
-            if (data.get(k).compareTo(data.get(maxChild)) > 0) {
+            if (data.get(k).compareTo(data.get(maxChild)) >= 0) {
                 break;
             }
             // 如果父结点是否比孩子结点中最大的那个孩子小
