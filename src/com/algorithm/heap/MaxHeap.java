@@ -9,7 +9,9 @@ import com.algorithm.array.Array;
  * @date 2020/7/3 23:18
  */
 public class MaxHeap<E extends Comparable<E>> {
-    // 使用动态数组表示一棵最大堆（完全二叉树）
+    /**
+     * 使用动态数组表示一棵最大堆（完全二叉树）
+     */
     private Array<E> data;
 
     public MaxHeap(int capacity) {
@@ -18,6 +20,13 @@ public class MaxHeap<E extends Comparable<E>> {
 
     public MaxHeap() {
         data = new Array<>();
+    }
+
+    public MaxHeap(E[] arr) {
+        data = new Array<>(arr);
+        for (int i = parent(arr.length - 1); i >= 0; i--) {
+            siftDown(i);
+        }
     }
 
     /**
@@ -144,5 +153,18 @@ public class MaxHeap<E extends Comparable<E>> {
             data.swap(k, maxChild);
             k = maxChild;
         }
+    }
+
+    /**
+     * 取出堆中的最大元素，并替换成元素e
+     *
+     * @param e 元素e
+     * @return 最大元素
+     */
+    public E replace(E e) {
+        E res = findMax();
+        data.set(0, e);
+        siftDown(0);
+        return res;
     }
 }

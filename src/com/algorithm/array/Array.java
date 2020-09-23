@@ -21,6 +21,11 @@ public class Array<E> {
         this(10);
     }
 
+    public Array(E[] arr) {
+        data = arr;
+        size = arr.length;
+    }
+
     /**
      * 获取数组中元素的个数
      * @return
