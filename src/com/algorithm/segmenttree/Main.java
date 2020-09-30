@@ -10,5 +10,9 @@ public class Main {
         // count the sum of the nodes of the segment tree
         SegmentTree<Integer> segmentTree = new SegmentTree<>(nums, (a, b) -> a + b);
         System.out.println(segmentTree);
+
+        System.out.println(segmentTree.query(0, 2));
+        System.out.println(segmentTree.query(2, 5));
+        System.out.println(segmentTree.query(0, 5));
     }
 }
