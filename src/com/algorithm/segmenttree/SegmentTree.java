@@ -1,6 +1,9 @@
 package com.algorithm.segmenttree;
 
 /**
+ * Use an array to represent a SegmentTree
+ * Recursively specified a SegmentTree requires three data: treeIndex, left boundary of the interval, right boundary of the interval.
+ *
  * @author JellyfishMIX
  * @date 2020/9/28 14:01
  */
@@ -129,6 +132,47 @@ public class SegmentTree<E> {
         E leftResult = query(leftTreeIndex, l, mid, queryL, mid);
         E rightResult = query(rightTreeIndex, mid + 1, r, mid + 1, queryR);
         return merger.merge(leftResult, rightResult);
+    }
+
+    /**
+     * update the value of the specified location
+     *
+     * @param index specified location
+     * @param e element to be replaced
+     */
+    public void set(int index, E e) {
+        if (index < 0 || index >= data.length) {
+            throw new IllegalArgumentException("Index is illegal.");
+        }
+
+        data[index] = e;
+        set(0, 0, data.length - 1, index, e);
+    }
+
+    /**
+     * update the value of the specified location
+     *
+     * @param treeIndex specified SegmentTree index
+     * @param l left boundary
+     * @param r right boundary
+     * @param index index of the element to be replaced
+     * @param e element
+     */
+    private void set(int treeIndex, int l, int r, int index, E e) {
+        if (l == r) {
+            tree[treeIndex] = e;
+            return;
+        }
+
+        int mid = l + (r - l) / 2;
+        int leftTreeIndex = leftChild(treeIndex);
+        int rightTreeIndex = rightChild(treeIndex);
+        if (index >= mid + 1) {
+            set(rightTreeIndex, mid + 1, r, index, e);
+        } else {
+            set(leftTreeIndex, l, mid, index, e);
+        }
+        tree[treeIndex] = merger.merge(tree[leftTreeIndex], tree[rightTreeIndex]);
     }
 
     @Override
